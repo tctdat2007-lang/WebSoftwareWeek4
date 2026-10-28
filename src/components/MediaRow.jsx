@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import {Link} from 'react-router';
 
 const MediaRow = (props) => {
-  const {item, setSelectedItem} = props;
+  const {item} = props;
 
   return (
     <tr>
@@ -25,9 +26,12 @@ const MediaRow = (props) => {
       <td>{item.media_type}</td>
 
       <td>
-        <button onClick={() => setSelectedItem(item)}>
-          View
-        </button>
+        <Link
+          to="/single"
+          state={{item}}
+        >
+          Show
+        </Link>
       </td>
     </tr>
   );
@@ -35,7 +39,6 @@ const MediaRow = (props) => {
 
 MediaRow.propTypes = {
   item: PropTypes.object.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
 };
 
 export default MediaRow;
