@@ -12,6 +12,8 @@ const Single = () => {
 
       <p>{item.description}</p>
 
+      <p>Owner: {item.username}</p>
+
       {item.media_type === 'image/jpeg' ? (
         <img
           src={item.filename}
