@@ -4,19 +4,25 @@ const Layout = () => {
   return (
     <div>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+        <Link to="/">
+          Home
+        </Link>{' '}
 
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+        <Link to="/profile">
+          Profile
+        </Link>{' '}
 
-          <li>
-            <Link to="/upload">Upload</Link>
-          </li>
-        </ul>
+        <Link to="/upload">
+          Upload
+        </Link>{' '}
+
+        <Link to="/login">
+          Login
+        </Link>{' '}
+
+        <Link to="/logout">
+          Logout
+        </Link>
       </nav>
 
       <main>
