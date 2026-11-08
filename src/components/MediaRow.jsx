@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 
 const MediaRow = (props) => {
@@ -37,10 +36,6 @@ const MediaRow = (props) => {
       </td>
     </tr>
   );
-};
-
-MediaRow.propTypes = {
-  item: PropTypes.object.isRequired,
 };
 
 export default MediaRow;

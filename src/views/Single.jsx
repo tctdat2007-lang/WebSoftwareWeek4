@@ -23,10 +23,8 @@ const Single = () => {
         <video
           src={item.filename}
           controls
-        ></video>
+        />
       )}
-
-      <br />
 
       <button onClick={() => navigate(-1)}>
         Go back
