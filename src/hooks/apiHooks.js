@@ -14,7 +14,9 @@ const useMedia = () => {
         const newArray = await Promise.all(
           json.map(async (item) => {
             const result = await fetchData(
-              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
+              import.meta.env.VITE_AUTH_API +
+              '/users/' +
+              item.user_id,
             );
 
             return {
@@ -33,9 +35,37 @@ const useMedia = () => {
     getMedia();
   }, []);
 
-  return {mediaArray};
-};
+  const postMedia = async (file, inputs, token) => {
+    const mediaData = {
+      title: inputs.title,
+      description: inputs.description,
+      filename: file.filename,
+      filesize: file.filesize,
+      media_type: file.media_type,
+    };
 
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(mediaData),
+    };
+
+    const result = await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/media',
+      fetchOptions,
+    );
+
+    return result;
+  };
+
+  return {
+    mediaArray,
+    postMedia,
+  };
+};
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
@@ -48,16 +78,18 @@ const useAuthentication = () => {
     };
 
     const loginResult = await fetchData(
-      import.meta.env.VITE_AUTH_API + '/auth/login',
+      import.meta.env.VITE_AUTH_API +
+      '/auth/login',
       fetchOptions,
     );
 
     return loginResult;
   };
 
-  return {postLogin};
+  return {
+    postLogin,
+  };
 };
-
 
 const useUser = () => {
   const getUserByToken = async (token) => {
@@ -68,13 +100,13 @@ const useUser = () => {
     };
 
     const userData = await fetchData(
-      import.meta.env.VITE_AUTH_API + '/users/token',
+      import.meta.env.VITE_AUTH_API +
+      '/users/token',
       fetchOptions,
     );
 
     return userData;
   };
-
 
   const postUser = async (inputs) => {
     const fetchOptions = {
@@ -86,13 +118,13 @@ const useUser = () => {
     };
 
     const userResult = await fetchData(
-      import.meta.env.VITE_AUTH_API + '/users',
+      import.meta.env.VITE_AUTH_API +
+      '/users',
       fetchOptions,
     );
 
     return userResult;
   };
-
 
   return {
     getUserByToken,
@@ -100,8 +132,37 @@ const useUser = () => {
   };
 };
 
+const useFile = () => {
+  const postFile = async (file, token) => {
+    const formData = new FormData();
+
+    formData.append('file', file);
+
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      body: formData,
+    };
+
+    const fileResult = await fetchData(
+      import.meta.env.VITE_UPLOAD_SERVER +
+      '/upload',
+      fetchOptions,
+    );
+
+    return fileResult;
+  };
+
+  return {
+    postFile,
+  };
+};
+
 export {
   useMedia,
   useAuthentication,
   useUser,
+  useFile,
 };
