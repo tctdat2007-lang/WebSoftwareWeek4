@@ -15,27 +15,56 @@ const Layout = () => {
   return (
     <div>
       <nav>
-        <Link to="/">Home</Link>{' '}
-
-        <Link to="/upload">
-          Upload
-        </Link>{' '}
-
-        {user ? (
-          <>
-            <Link to="/profile">
-              Profile
-            </Link>{' '}
-
-            <Link to="/logout">
-              Logout
+        <ul className="flex gap-5 list-none p-0">
+          <li>
+            <Link
+              className="no-underline"
+              to="/"
+            >
+              Home
             </Link>
-          </>
-        ) : (
-          <Link to="/login">
-            Login
-          </Link>
-        )}
+          </li>
+
+          <li>
+            <Link
+              className="no-underline"
+              to="/upload"
+            >
+              Upload
+            </Link>
+          </li>
+
+          {user ? (
+            <>
+              <li>
+                <Link
+                  className="no-underline"
+                  to="/profile"
+                >
+                  Profile
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="no-underline"
+                  to="/logout"
+                >
+                  Logout
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link
+                className="no-underline"
+                to="/login"
+              >
+                Login
+              </Link>
+            </li>
+          )}
+        </ul>
       </nav>
 
       <main>

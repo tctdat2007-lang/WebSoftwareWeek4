@@ -1,45 +1,8 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
+@import "tailwindcss";
 
-nav ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-}
-
-nav a {
-  text-decoration: none;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: left;
-}
-
-table img {
-  width: 120px;
-}
-
-video {
-  max-width: 600px;
-}
-
-main img {
-  max-width: 600px;
-}
-
-button {
-  margin-top: 10px;
-  padding: 6px 12px;
-  cursor: pointer;
+@layer base {
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
 }

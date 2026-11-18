@@ -5,29 +5,41 @@ const MediaRow = (props) => {
 
   return (
     <tr>
-      <td>
+      <td className="border border-black p-2">
         <img
+          className="w-[120px]"
           src={item.thumbnail}
           alt={item.title}
         />
       </td>
 
-      <td>{item.title}</td>
+      <td className="border border-black p-2">
+        {item.title}
+      </td>
 
-      <td>{item.description}</td>
+      <td className="border border-black p-2">
+        {item.description}
+      </td>
 
-      <td>{item.username}</td>
+      <td className="border border-black p-2">
+        {item.username}
+      </td>
 
-      <td>
+      <td className="border border-black p-2">
         {new Date(item.created_at).toLocaleString('fi-FI')}
       </td>
 
-      <td>{item.filesize}</td>
+      <td className="border border-black p-2">
+        {item.filesize}
+      </td>
 
-      <td>{item.media_type}</td>
+      <td className="border border-black p-2">
+        {item.media_type}
+      </td>
 
-      <td>
+      <td className="border border-black p-2">
         <Link
+          className="no-underline"
           to="/single"
           state={{item}}
         >
