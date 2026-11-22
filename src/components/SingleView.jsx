@@ -1,38 +1,45 @@
-import PropTypes from 'prop-types';
+import {useNavigate} from 'react-router';
+import Likes from './Likes.jsx';
 
-const SingleView = (props) => {
-  const {item, setSelectedItem} = props;
+const SingleView = ({item}) => {
+  const navigate = useNavigate();
 
   return (
-    <dialog open={item !== null}>
-      <h2>{item.title}</h2>
+    <>
+      <h1 className="text-3xl font-bold">
+        {item.title}
+      </h1>
 
       <p>{item.description}</p>
 
+      <p>
+        Owner: {item.username}
+      </p>
+
       {item.media_type === 'image/jpeg' ? (
         <img
+          className="max-w-[600px]"
           src={item.filename}
           alt={item.title}
         />
       ) : (
         <video
+          className="max-w-[600px]"
           src={item.filename}
           controls
-        ></video>
+        />
       )}
 
-      <br />
+      <Likes item={item} />
 
-      <button onClick={() => setSelectedItem(null)}>
-        Close
+      <button
+        className="mt-2.5 cursor-pointer px-3 py-1.5"
+        onClick={() => navigate(-1)}
+      >
+        Go back
       </button>
-    </dialog>
+    </>
   );
-};
-
-SingleView.propTypes = {
-  item: PropTypes.object.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
 };
 
 export default SingleView;
